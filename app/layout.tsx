@@ -11,8 +11,8 @@ export const metadata: Metadata = {
     canonical: '/'
   },
   title: {
-    default: 'John Smith',
-    template: '%s | John Smith'
+    default: 'Ram Loganda',
+    template: '%s | Ram Loganda'
   },
   description: 'My portfolio, blog, and personal website.'
 };
@@ -39,10 +39,10 @@ export default function RootLayout({
 
 function Footer() {
   const links = [
-    { name: '@johnsmith', url: 'https://x.com/johnsmith' },
-    { name: 'youtube', url: 'https://www.youtube.com/@johnsmith' },
-    { name: 'linkedin', url: 'https://www.linkedin.com/in/johnsmith' },
-    { name: 'github', url: 'https://github.com/johnsmith' }
+    { name: '@ramloganda', url: 'https://x.com/ramloganda' },
+    { name: 'youtube', url: 'https://www.youtube.com/@ramloganda' },
+    { name: 'linkedin', url: 'https://www.linkedin.com/in/ramloganda' },
+    { name: 'github', url: 'https://github.com/ramloganda' }
   ];
 
   return (
