@@ -1,10 +1,16 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Open_Sans } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { AnimatedThemeToggler } from '@/components/animated-theme-toggler';
+import { SiteDock } from '@/components/site-dock';
 
-const inter = Inter({ subsets: ['latin'] });
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+  variable: '--font-open-sans',
+})
+
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://next-mdx-blog.vercel.app'),
@@ -24,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.className}`} suppressHydrationWarning>
+    <html lang="en" className={openSans.variable} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -34,41 +40,14 @@ export default function RootLayout({
       </head>
       <body className="antialiased tracking-tight">
         <AnimatedThemeToggler className="fixed top-4 right-4 z-50 p-2 rounded-full text-gray-600 dark:text-zinc-400 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors" />
-        <div className="min-h-screen overflow-x-clip flex flex-col justify-between pt-0 md:pt-8 p-8 dark:bg-zinc-950 bg-white text-gray-900 dark:text-zinc-200">
+        <SiteDock />
+        <div className="min-h-screen overflow-x-clip flex flex-col justify-between pt-0 md:pt-8 p-8 pb-28 dark:bg-zinc-950 bg-white text-gray-900 dark:text-zinc-200">
           <main className="max-w-[60ch] mx-auto w-full space-y-6">
             {children}
           </main>
-          <Footer />
           <Analytics />
         </div>
       </body>
     </html>
-  );
-}
-
-function Footer() {
-  const links = [
-    { name: '@ramloganda', url: 'https://x.com/ramloganda' },
-    { name: 'youtube', url: 'https://www.youtube.com/@ramloganda' },
-    { name: 'linkedin', url: 'https://www.linkedin.com/in/ramloganda' },
-    { name: 'github', url: 'https://github.com/ramloganda' }
-  ];
-
-  return (
-    <footer className="mt-12 text-center">
-      <div className="flex justify-center space-x-4 tracking-tight">
-        {links.map((link) => (
-          <a
-            key={link.name}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 dark:text-gray-500 hover:text-blue-500 transition-colors duration-200"
-          >
-            {link.name}
-          </a>
-        ))}
-      </div>
-    </footer>
   );
 }

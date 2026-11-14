@@ -3,7 +3,16 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-family-sans: 'Inter', sans-serif;
+  --font-sans: var(--font-open-sans), system-ui, sans-serif;
+}
+
+/* Lets non-text content break out of the 60ch column, centred on the page.
+   Set --wide-width on the element to change how wide it goes. */
+@utility wide {
+  width: min(var(--wide-width, 64rem), calc(100vw - 4rem));
+  max-width: none;
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 
 :root {
@@ -24,6 +33,7 @@ html {
 
 body {
   text-rendering: optimizeLegibility;
+  font-family: var(--font-sans);
 }
 
 h1,
