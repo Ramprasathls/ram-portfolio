@@ -3,8 +3,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "start": "next start",
-    "delete": "rm -rf app/n"
+    "start": "next start"
   },
   "dependencies": {
     "@next/mdx": "16.1.5",
