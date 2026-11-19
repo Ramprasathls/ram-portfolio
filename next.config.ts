@@ -28,7 +28,8 @@ const nextConfig: NextConfig = {
   // rehype or remark plugins. If you need them, remove
   // the `experimental.mdxRs` flag.
   experimental: {
-    mdxRs: { mdxType: 'gfm' }
+    mdxRs: { mdxType: 'gfm' },
+    agentUpgrade: 'security'
   }
  };
 
