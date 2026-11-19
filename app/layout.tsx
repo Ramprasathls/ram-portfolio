@@ -38,7 +38,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased tracking-tight">
+      <body className="antialiased tracking-tight" suppressHydrationWarning>
         <AnimatedThemeToggler className="fixed top-4 right-4 z-50 p-2 rounded-full text-gray-600 dark:text-zinc-400 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors" />
         <SiteDock />
         <div className="min-h-screen overflow-x-clip flex flex-col justify-between pt-0 md:pt-8 p-8 pb-28 dark:bg-zinc-950 bg-white text-gray-900 dark:text-zinc-200">
