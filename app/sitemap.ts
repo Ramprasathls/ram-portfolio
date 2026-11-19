@@ -24,8 +24,9 @@ export default async function sitemap() {
   const notesDirectory = path.join(process.cwd(), 'app', 'blogs');
   const slugs = await getNoteSlugs(notesDirectory);
 
+  // app/blogs/page.mdx (the index) comes back as '.'
   const notes = slugs.map((slug) => ({
-    url: `${SITE_URL}/blogs/${slug}`,
+    url: slug === '.' ? `${SITE_URL}/blogs` : `${SITE_URL}/blogs/${slug}`,
     lastModified: new Date().toISOString()
   }));
 

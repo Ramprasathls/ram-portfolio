@@ -18,8 +18,8 @@ There is no linter and no test suite.
 ## Architecture
 
 **Content is MDX routes.** `next.config.ts` sets `pageExtensions: ['mdx', 'ts', 'tsx']`, so every `page.mdx` is a route.
-- `app/page.mdx` is the home page. Its list of links is the blog index.
-- Each post lives at `app/blogs/<slug>/page.mdx`. Nothing serves `/blogs` itself.
+- `app/page.mdx` is the home page, with a list of links to posts.
+- Each post lives at `app/blogs/<slug>/page.mdx`. `app/blogs/page.mdx` is the Blog page at `/blogs`; for now it has only metadata. "Portfolio" (The Lab) is the post at `/blogs/portfolio`.
 - A post starts with `export const metadata = { title, alternates: { canonical: '/blogs/<slug>' } }`, then `# Title`, then `<br />`. The layout adds `| Ram Loganda` to every title.
 - Posts import React components with the `@/` alias, which points to the repo root. Example: `<ProjectGrid />` in `blogs/portfolio`.
 
@@ -30,8 +30,7 @@ There is no linter and no test suite.
 - A `<Table data={{headers, rows}} />` component is available.
 
 **Layout and width.** `app/layout.tsx` renders:
-- the theme toggler
-- `SiteDock`, the fixed bottom navigation
+- `components/site-header.tsx`: top-right Home / Portfolio / Blog links and the theme toggler. Its links are defined in the `links` array, and each link's active-page check is there too.
 - a single `max-w-[60ch]` content column
 
 Content that should be wider than the text column uses the `wide` utility from `app/globals.css`, with the width set through `--wide-width`.
@@ -49,7 +48,7 @@ Content that should be wider than the text column uses the `wide` utility from `
 - If a new shadcn component uses a token that isn't defined (for example `muted`, `card` or `popover`), add it in all three places. Otherwise its colour classes produce no CSS.
 
 **Other moving parts**
-- `app/sitemap.ts` scans `app/blogs/**/page.mdx`. New posts appear in it automatically. If you move or rename the posts folder, update this file or the build fails.
+- `app/sitemap.ts` scans `app/blogs/**/page.mdx`, including the index page, which comes back as slug `.`. New posts appear in it automatically. If you move or rename the posts folder, update this file or the build fails.
 - `next.config.ts` can load redirects from a Postgres `redirects` table through `POSTGRES_URL`. It returns no redirects when that variable is unset, which is the normal local setup.
 - `experimental.agentUpgrade: 'security'` in `next.config.ts` is intentional.
 - Static files go in `public/`, and per-post images in `public/blogs/<slug>/`. `components/photo-carousel.tsx` shows a placeholder for images that haven't been uploaded yet.

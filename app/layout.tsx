@@ -2,8 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
-import { AnimatedThemeToggler } from '@/components/animated-theme-toggler';
-import { SiteDock } from '@/components/site-dock';
+import { SiteHeader } from '@/components/site-header';
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -39,10 +38,9 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased tracking-tight" suppressHydrationWarning>
-        <AnimatedThemeToggler className="fixed top-4 right-4 z-50 p-2 rounded-full text-gray-600 dark:text-zinc-400 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors" />
-        <SiteDock />
-        <div className="min-h-screen overflow-x-clip flex flex-col justify-between pt-0 md:pt-8 p-8 pb-28 dark:bg-zinc-950 bg-white text-gray-900 dark:text-zinc-200">
-          <main className="max-w-[60ch] mx-auto w-full space-y-6">
+        <div className="min-h-screen overflow-x-clip flex flex-col px-4 pb-8 sm:px-8 dark:bg-zinc-950 bg-white text-gray-900 dark:text-zinc-200">
+          <SiteHeader />
+          <main className="max-w-[60ch] mx-auto w-full space-y-6 px-4 sm:px-0">
             {children}
           </main>
           <Analytics />
