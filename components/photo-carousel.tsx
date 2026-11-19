@@ -23,7 +23,7 @@ function Slide({ photo, index }: { photo: Photo; index: number }) {
   const [missing, setMissing] = React.useState(false);
 
   return (
-    <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-gray-100 dark:bg-zinc-900">
+    <figure className="group relative aspect-[4/5] overflow-hidden rounded-xl bg-gray-100 dark:bg-zinc-900">
       {missing ? (
         <div className="flex h-full flex-col items-center justify-center gap-2 p-4 text-center text-sm text-gray-500 dark:text-zinc-500">
           <ImageIcon className="size-6" aria-hidden />
@@ -36,17 +36,26 @@ function Slide({ photo, index }: { photo: Photo; index: number }) {
           )}
         </div>
       ) : (
-        <Image
-          src={photo.src}
-          alt={photo.alt}
-          fill
-          sizes="(min-width: 1024px) 18rem, (min-width: 640px) 45vw, 90vw"
-          className="object-cover"
-          priority={index === 0}
-          onError={() => setMissing(true)}
-        />
+        <>
+          <Image
+            src={photo.src}
+            alt={photo.alt}
+            fill
+            sizes="(min-width: 384px) 320px, 90vw"
+            className="object-cover"
+            priority={index === 0}
+            onError={() => setMissing(true)}
+          />
+          {/* Caption: the alt text, revealed on hover */}
+          <figcaption
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-black/75 via-black/40 to-transparent px-4 pt-10 pb-4 text-sm leading-snug text-white opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100"
+          >
+            {photo.alt}
+          </figcaption>
+        </>
       )}
-    </div>
+    </figure>
   );
 }
 
@@ -81,7 +90,7 @@ export function PhotoCarousel({
   }, [api]);
 
   return (
-    <div className="wide my-8 [--wide-width:52rem]">
+    <div className="mx-auto my-8 w-full max-w-xs">
       <Carousel
         opts={{ align: 'start', loop: true }}
         plugins={[autoplay.current]}
@@ -90,7 +99,7 @@ export function PhotoCarousel({
       >
         <CarouselContent>
           {images.map((photo, i) => (
-            <CarouselItem key={photo.src} className="sm:basis-1/2 lg:basis-1/3">
+            <CarouselItem key={photo.src}>
               <Slide photo={photo} index={i} />
             </CarouselItem>
           ))}
