@@ -38,9 +38,9 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased tracking-tight" suppressHydrationWarning>
-        <div className="min-h-screen overflow-x-clip flex flex-col px-4 pb-8 sm:px-8 dark:bg-zinc-950 bg-white text-gray-900 dark:text-zinc-200">
-          <SiteHeader />
-          <main className="max-w-[60ch] mx-auto w-full space-y-6 px-4 sm:px-0">
+        <SiteHeader />
+        <div className="min-h-screen overflow-x-clip flex flex-col justify-between p-8 pt-4 md:pt-8 dark:bg-zinc-950 bg-white text-gray-900 dark:text-zinc-200">
+          <main className="max-w-[60ch] mx-auto w-full space-y-6">
             {children}
           </main>
           <Analytics />

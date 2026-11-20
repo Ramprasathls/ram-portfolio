@@ -24,7 +24,7 @@ export function SiteHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="flex items-center justify-end gap-1 py-4 sm:gap-2">
+    <header className="absolute top-4 right-4 z-50 flex items-center gap-1 sm:gap-2">
       <nav aria-label="Main" className="flex items-center gap-1 sm:gap-2">
         {links.map((link) => {
           const active = link.isActive(pathname);
